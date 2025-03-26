@@ -1,15 +1,8 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
-
-// Cargar variables de entorno
-dotenv.config();
-
 // Importar rutas
 const authRoutes = require('./routes/auth');
 const usuariosRoutes = require('./routes/usuarios');
 const transaccionesRoutes = require('./routes/transacciones');
+const tarjetasRoutes = require('./routes/tarjetas');
 
 // Inicializar app
 const app = express();
@@ -30,6 +23,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://milyfers:popcorn@clus
 app.use('/api', authRoutes);
 app.use('/api/usuarios', usuariosRoutes);
 app.use('/api/transacciones', transaccionesRoutes);
+app.use('/api/tarjetas',tarjetasRoutes);
 
 // Manejo de errores
 app.use((err, req, res, next) => {
@@ -38,7 +32,6 @@ app.use((err, req, res, next) => {
 });
 
 // Iniciar servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en puerto ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Servidor corriendo en puerto ${PORT} y aceptando conexiones externas`);
 });
