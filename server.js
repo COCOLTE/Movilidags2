@@ -1,9 +1,16 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv');
+
+// Cargar variables de entorno
+dotenv.config();
+
 // Importar rutas
 const authRoutes = require('./routes/auth');
 const usuariosRoutes = require('./routes/usuarios');
 const transaccionesRoutes = require('./routes/transacciones');
 const tarjetasRoutes = require('./routes/tarjetas');
-
 // Inicializar app
 const app = express();
 
